@@ -4,573 +4,453 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Мчимыч — инструкция: шлагбаумы и домофоны</title>
-    <!-- Font Awesome 6 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Fonts: Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* Светлая тема (только она) */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --bg-body: #f8fafc;
-            --bg-surface: #ffffff;
-            --text-primary: #0f172a;
-            --text-secondary: #334155;
-            --border-light: #e2e8f0;
-            --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.05);
-            --accent: #2563eb;
-            --accent-hover: #1d4ed8;
-            --warning-bg: #fef9c3;
-            --warning-border: #eab308;
-            --danger-bg: #fee2e2;
-            --danger-border: #ef4444;
-            --info-bg: #e0f2fe;
-            --info-border: #0ea5e9;
-            --success-bg: #dcfce7;
-            --success-border: #22c55e;
-            --placeholder-bg: #f1f5f9;
-            --placeholder-border: #cbd5e1;
-            --footer-bg: #eef2ff;
+            --bg-body: #f8fafc; --bg-surface: #ffffff; --text-primary: #0f172a;
+            --text-secondary: #334155; --border-light: #e2e8f0; --card-shadow: 0 4px 12px rgba(0,0,0,0.03), 0 1px 2px rgba(0,0,0,0.05);
+            --accent: #2563eb; --accent-hover: #1d4ed8; --warning-bg: #fef9c3; --warning-border: #eab308;
+            --danger-bg: #fee2e2; --danger-border: #ef4444; --info-bg: #e0f2fe; --info-border: #0ea5e9;
+            --success-bg: #dcfce7; --success-border: #22c55e; --placeholder-bg: #f1f5f9; --placeholder-border: #cbd5e1;
+            --quiz-correct: #22c55e; --quiz-wrong: #ef4444;
         }
-
         body {
-            font-family: 'Inter', 'Roboto', 'Apple Color Emoji', 'Segoe UI Emoji', sans-serif;
-            background-color: var(--bg-body);
-            color: var(--text-primary);
-            line-height: 1.5;
-            font-size: 12px; /* основной шрифт 12px */
+            font-family: 'Inter', 'Apple Color Emoji', 'Segoe UI Emoji', 'Roboto', sans-serif;
+            background-color: var(--bg-body); color: var(--text-primary); line-height: 1.5; font-size: 12px;
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem;
-        }
-
-        /* header */
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid var(--border-light);
-        }
-        .title-section h1 {
-            font-size: 1.9rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--accent), #8b5cf6);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            letter-spacing: -0.01em;
-        }
-        .title-section p {
-            color: var(--text-secondary);
-            margin-top: 0.25rem;
-            font-size: 0.95rem;
-        }
-
-        /* table of contents */
-        .toc {
-            background: var(--bg-surface);
-            border-radius: 1.5rem;
-            padding: 1.5rem;
-            margin-bottom: 2.5rem;
-            box-shadow: var(--card-shadow);
-            border: 1px solid var(--border-light);
-        }
-        .toc h2 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .toc-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-        }
-        .toc-link {
-            background: var(--bg-body);
-            padding: 0.5rem 1rem;
-            border-radius: 2rem;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-            color: var(--accent);
-            border: 1px solid var(--border-light);
-            transition: 0.2s;
-        }
-        .toc-link:hover {
-            background: var(--accent);
-            color: white;
-            border-color: var(--accent);
-        }
-
-        /* sections */
-        .section {
-            background: var(--bg-surface);
-            border-radius: 1.5rem;
-            padding: 1.8rem;
-            margin-bottom: 2rem;
-            box-shadow: var(--card-shadow);
-            border: 1px solid var(--border-light);
-            scroll-margin-top: 1rem;
-        }
-        .section h2 {
-            font-size: 1.7rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            border-left: 5px solid var(--accent);
-            padding-left: 1rem;
-        }
-        .section h3 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin: 1.2rem 0 0.8rem 0;
-            color: var(--text-primary);
-        }
-        .badge-list {
-            list-style: none;
-            margin: 1rem 0;
-        }
-        .badge-list li {
-            margin-bottom: 0.7rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-        }
-        .badge-list li i {
-            margin-top: 0.2rem;
-            color: var(--accent);
-            width: 1.4rem;
-        }
-
-        .note-card {
-            background: var(--info-bg);
-            border-left: 4px solid var(--info-border);
-            padding: 1rem 1.2rem;
-            border-radius: 1rem;
-            margin: 1.2rem 0;
-        }
-        .warning-card {
-            background: var(--warning-bg);
-            border-left: 4px solid var(--warning-border);
-            padding: 1rem 1.2rem;
-            border-radius: 1rem;
-            margin: 1.2rem 0;
-        }
-        .danger-card {
-            background: var(--danger-bg);
-            border-left: 4px solid var(--danger-border);
-            padding: 1rem 1.2rem;
-            border-radius: 1rem;
-            margin: 1.2rem 0;
-        }
-        .success-card {
-            background: var(--success-bg);
-            border-left: 4px solid var(--success-border);
-            padding: 1rem 1.2rem;
-            border-radius: 1rem;
-            margin: 1.2rem 0;
-        }
-
-        /* фото слева 127px, текст справа */
-        .media-row {
-            display: flex;
-            gap: 1.5rem;
-            align-items: flex-start;
-            margin: 1.5rem 0;
-            flex-wrap: wrap;
-        }
-        .media-img {
-            flex-shrink: 0;
-            width: 127px;
-        }
-        .media-img img {
-            width: 100%;
-            height: auto;
-            max-height: 275px;
-            object-fit: contain;
-            border-radius: 0.75rem;
-            background: var(--placeholder-bg);
-            border: 1px solid var(--placeholder-border);
-            display: block;
-        }
-        .media-content {
-            flex: 1;
-            min-width: 200px;
-        }
-        .media-content .photo-label {
-            font-weight: 700;
-            font-size: 10px;
-            color: var(--accent);
-            margin-bottom: 0.25rem;
-            display: inline-block;
-        }
-        .media-content p {
-            margin-top: 0.3rem;
-            color: var(--text-secondary);
-            font-size: 9px;
-            font-style: italic;
-        }
-        @media (max-width: 640px) {
-            .media-row {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-            .media-img {
-                width: 127px;
-                margin-bottom: 0.5rem;
-            }
-            .media-content {
-                text-align: left;
-                width: 100%;
-            }
-        }
-
-        .step-list {
-            counter-reset: step;
-            list-style: none;
-            margin: 1rem 0;
-        }
-        .step-list li {
-            counter-increment: step;
-            margin-bottom: 0.8rem;
-            padding-left: 1.8rem;
-            position: relative;
-        }
-        .step-list li::before {
-            content: counter(step);
-            background: var(--accent);
-            color: white;
-            font-weight: bold;
-            width: 1.3rem;
-            height: 1.3rem;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
-            position: absolute;
-            left: 0;
-            top: 0.1rem;
-        }
-
-        .footer {
-            text-align: center;
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            border-top: 1px solid var(--border-light);
-            padding-top: 2rem;
-            margin-top: 1rem;
-        }
-        .back-to-top {
-            position: fixed;
-            bottom: 1.5rem;
-            right: 1.5rem;
-            background: var(--accent);
-            color: white;
-            border-radius: 3rem;
-            padding: 0.6rem 1rem;
-            font-size: 0.8rem;
-            text-decoration: none;
-            opacity: 0.8;
-            transition: 0.2s;
-            z-index: 99;
-        }
-        .back-to-top:hover {
-            opacity: 1;
-        }
-        .arrow-list {
-            list-style: none;
-            margin: 0.5rem 0 0 1rem;
-        }
-        .arrow-list li {
-            margin-bottom: 0.4rem;
-            position: relative;
-            padding-left: 1.2rem;
-        }
-        .arrow-list li::before {
-            content: "→";
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-            font-weight: bold;
-        }
-        .highlight {
-            font-weight: 700;
-            background: #fff2cc;
-            padding: 0.1rem 0.2rem;
-            border-radius: 0.25rem;
-            display: inline-block;
-        }
-        body.dark .highlight {
-            background: #3e3a2b;
-            color: #ffecb3;
-        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem; }
+        .header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 2px solid var(--border-light); }
+        .title-section h1 { font-size: 1.9rem; font-weight: 700; background: linear-gradient(135deg, var(--accent), #8b5cf6); background-clip: text; -webkit-background-clip: text; color: transparent; letter-spacing: -0.01em; }
+        .title-section h1 .capital { text-transform: uppercase; }
+        .title-section p { color: var(--text-secondary); margin-top: 0.25rem; font-size: 0.95rem; }
+        .lang-switcher { display: flex; gap: 0.5rem; background: var(--bg-surface); padding: 0.3rem; border-radius: 2rem; border: 1px solid var(--border-light); }
+        .lang-btn { background: none; border: none; padding: 0.3rem 0.8rem; border-radius: 1.5rem; cursor: pointer; font-weight: 500; font-size: 0.8rem; transition: 0.2s; color: var(--text-secondary); }
+        .lang-btn.active { background: var(--accent); color: white; }
+        .toc { background: var(--bg-surface); border-radius: 1.5rem; padding: 1.5rem; margin-bottom: 2.5rem; box-shadow: var(--card-shadow); border: 1px solid var(--border-light); }
+        .toc h2 { font-size: 1.3rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+        .toc-grid { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+        .toc-link { background: var(--bg-body); padding: 0.5rem 1rem; border-radius: 2rem; text-decoration: none; font-weight: 500; font-size: 0.9rem; color: var(--accent); border: 1px solid var(--border-light); transition: 0.2s; }
+        .toc-link:hover { background: var(--accent); color: white; border-color: var(--accent); }
+        .section { background: var(--bg-surface); border-radius: 1.5rem; padding: 1.8rem; margin-bottom: 2rem; box-shadow: var(--card-shadow); border: 1px solid var(--border-light); scroll-margin-top: 1rem; }
+        .section h2 { font-size: 1.7rem; font-weight: 600; margin-bottom: 1rem; border-left: 5px solid var(--accent); padding-left: 1rem; display: flex; align-items: center; gap: 0.6rem; }
+        .section h3 { font-size: 1.3rem; font-weight: 600; margin: 1.2rem 0 0.8rem 0; display: flex; align-items: center; gap: 0.5rem; }
+        .badge-list { list-style: none; margin: 1rem 0; }
+        .badge-list li { margin-bottom: 0.7rem; display: flex; align-items: flex-start; gap: 0.75rem; }
+        .badge-list li .emoji { margin-top: 0.2rem; width: 1.4rem; font-size: 1.1rem; }
+        .note-card { background: var(--info-bg); border-left: 4px solid var(--info-border); padding: 1rem 1.2rem; border-radius: 1rem; margin: 1.2rem 0; }
+        .warning-card { background: var(--warning-bg); border-left: 4px solid var(--warning-border); padding: 1rem 1.2rem; border-radius: 1rem; margin: 1.2rem 0; }
+        .danger-card { background: var(--danger-bg); border-left: 4px solid var(--danger-border); padding: 1rem 1.2rem; border-radius: 1rem; margin: 1.2rem 0; }
+        .success-card { background: var(--success-bg); border-left: 4px solid var(--success-border); padding: 1rem 1.2rem; border-radius: 1rem; margin: 1.2rem 0; }
+        .media-row { display: flex; gap: 1.5rem; align-items: flex-start; margin: 1.5rem 0; flex-wrap: wrap; }
+        .media-img { flex-shrink: 0; width: 127px; }
+        .media-img img, .media-img video { width: 100%; height: auto; max-height: 275px; object-fit: contain; border-radius: 0.75rem; background: var(--placeholder-bg); border: 1px solid var(--placeholder-border); display: block; }
+        .media-content { flex: 1; min-width: 200px; }
+        .media-content .photo-label { font-weight: 700; font-size: 10px; color: var(--accent); margin-bottom: 0.25rem; display: inline-block; }
+        .media-content p { margin-top: 0.3rem; color: var(--text-secondary); font-size: 9px; font-style: italic; }
+        @media (max-width: 640px) { .media-row { flex-direction: column; align-items: center; text-align: center; } .media-img { width: 127px; margin-bottom: 0.5rem; } .media-content { text-align: left; width: 100%; } }
+        .arrow-list { list-style: none; margin: 0.5rem 0 0 1rem; }
+        .arrow-list li { margin-bottom: 0.4rem; position: relative; padding-left: 1.2rem; }
+        .arrow-list li::before { content: "→"; position: absolute; left: 0; color: var(--accent); font-weight: bold; }
+        .highlight { background: #ffeb3b; color: #b45309; font-weight: 800; padding: 0.2rem 0.4rem; border-radius: 0.5rem; border: 1px solid #f59e0b; box-shadow: 0 1px 3px rgba(0,0,0,0.1); display: inline-block; font-size: 0.95rem; }
+        .highlight .emoji { margin-right: 0.3rem; }
+        .quiz-section { background: var(--bg-surface); border-radius: 1.5rem; padding: 1.8rem; margin-bottom: 2rem; box-shadow: var(--card-shadow); border: 1px solid var(--border-light); }
+        .quiz-question { background: var(--bg-body); border-radius: 1rem; padding: 1.2rem; margin-bottom: 1.2rem; border-left: 4px solid var(--accent); }
+        .quiz-question p { font-weight: 600; margin-bottom: 0.8rem; font-size: 1rem; }
+        .quiz-option { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.5rem; cursor: pointer; font-size: 0.9rem; }
+        .quiz-option input { cursor: pointer; accent-color: var(--accent); }
+        .quiz-feedback { margin-top: 0.5rem; font-size: 0.85rem; font-style: italic; padding: 0.3rem 0.6rem; border-radius: 0.5rem; display: inline-block; }
+        .quiz-correct { background: #dcfce7; color: #15803d; }
+        .quiz-wrong { background: #fee2e2; color: #b91c1c; }
+        .quiz-result { margin-top: 1rem; font-weight: bold; text-align: center; padding: 0.8rem; background: var(--accent); color: white; border-radius: 2rem; font-size: 0.9rem; }
+        .footer { text-align: center; font-size: 0.8rem; color: var(--text-secondary); border-top: 1px solid var(--border-light); padding-top: 2rem; margin-top: 1rem; }
+        .back-to-top { position: fixed; bottom: 1.5rem; right: 1.5rem; background: var(--accent); color: white; border-radius: 3rem; padding: 0.6rem 1rem; font-size: 0.8rem; text-decoration: none; opacity: 0.8; transition: 0.2s; z-index: 99; display: flex; align-items: center; gap: 0.3rem; }
+        .back-to-top:hover { opacity: 1; }
+        .emoji { font-size: 1.1em; display: inline-block; }
     </style>
 </head>
 <body>
 <div class="container">
     <div class="header">
         <div class="title-section">
-            <h1><i class="fas fa-gate"></i> Шлагбаумы & домофоны</h1>
-            <p>Инструкция для курьеров «Мчимыч» — быстрый доступ к доставке</p>
+            <h1><span class="emoji">🚧🚪</span> <span class="capital">ШЛАГБАУМЫ & ДОМОФОНЫ</span></h1>
+            <p data-i18n="header-sub">Инструкция для курьеров «Мчимыч» — быстрый доступ к доставке</p>
+        </div>
+        <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="ru">🇷🇺 Рус</button>
+            <button class="lang-btn" data-lang="ky">🇰🇬 Кырг</button>
+            <button class="lang-btn" data-lang="tj">🇹🇯 Тоҷик</button>
+            <button class="lang-btn" data-lang="uz">🇺🇾 O‘zb</button>
         </div>
     </div>
 
     <!-- Оглавление -->
     <div class="toc">
-        <h2><i class="fas fa-list-ul"></i> Содержание</h2>
+        <h2><span class="emoji">📋</span> <span data-i18n="toc-title">Содержание</span></h2>
         <div class="toc-grid">
-            <a href="#overview" class="toc-link">📋 Общее описание</a>
-            <a href="#barriers" class="toc-link">🚧 Шлагбаумы</a>
-            <a href="#intercom-auto" class="toc-link">📞 Домофоны (авто)</a>
-            <a href="#intercom-code" class="toc-link">🔢 Домофоны (код)</a>
-            <a href="#errors" class="toc-link">⚠️ Ошибки</a>
-            <a href="#exit" class="toc-link">🚗 Выезд (по запросу)</a>
+            <a href="#overview" class="toc-link" data-i18n="toc-overview">📋 Общее описание</a>
+            <a href="#barriers" class="toc-link" data-i18n="toc-barriers">🚧 Шлагбаумы</a>
+            <a href="#intercom-auto" class="toc-link" data-i18n="toc-intercom-auto">📞 Домофоны (авто)</a>
+            <a href="#intercom-code" class="toc-link" data-i18n="toc-intercom-code">🔢 Домофоны (код)</a>
+            <a href="#errors" class="toc-link" data-i18n="toc-errors">⚠️ Ошибки</a>
+            <a href="#exit" class="toc-link" data-i18n="toc-exit">🚗 Выезд (по запросу)</a>
+            <a href="#video-block" class="toc-link" data-i18n="toc-video">🎥 Видео</a>
+            <a href="#quiz" class="toc-link" data-i18n="toc-quiz">📝 Тест</a>
         </div>
     </div>
 
     <!-- 1. Общее описание -->
     <section id="overview" class="section">
-        <h2><i class="fas fa-info-circle"></i> Общее описание</h2>
-        <p>В приложении «Мчимыч» доступен функционал автоматического открытия шлагбаумов и домофонов, который позволяет курьерам быстрее и удобнее получать доступ на территории доставки.</p>
+        <h2><span class="emoji">ℹ️</span> <span data-i18n="overview-title">Общее описание</span></h2>
+        <p data-i18n="overview-text">В приложении «Мчимыч» доступен функционал автоматического открытия шлагбаумов и домофонов, который позволяет курьерам быстрее и удобнее получать доступ на территории доставки.</p>
         <div class="warning-card">
-            <i class="fas fa-exclamation-triangle"></i> <strong>Важные условия для корректной работы:</strong>
+            <span class="emoji">⚠️</span> <strong data-i18n="important-conditions">Важные условия для корректной работы:</strong>
             <ul class="badge-list" style="margin-top: 12px;">
-                <li><i class="fas fa-user-check"></i> <span class="highlight">Использовать исключительно личную учетную запись, в которой указан актуальный рабочий номер телефона курьера.</span> Использование аккаунтов без номера телефона или с номером, принадлежащим другому курьеру либо компании, не допускается.</li>
-                <li><i class="fas fa-car"></i> Указывать государственный номер транспортного средства строго в соответствии с фактически используемым ТС. В ряде случаев доступ оформляется автоматически именно по номеру автомобиля. Если указанные данные не совпадают с фактическими, система не сможет открыть шлагбаум.</li>
-                <li><i class="fas fa-calendar-alt"></i> Выбор транспортного средства осуществляется <strong>при начале смены</strong>.</li>
+                <li><span class="emoji">👤✅</span> 
+                    <span class="highlight"><span class="emoji">⭐</span> <span data-i18n="cond-personal">Использовать исключительно личную учетную запись, в которой указан актуальный рабочий номер телефона курьера.</span></span>
+                    <span data-i18n="cond-personal-desc">Использование аккаунтов без номера телефона или с номером, принадлежащим другому курьеру либо компании, не допускается.</span>
+                </li>
+                <li><span class="emoji">🚗</span> <span data-i18n="cond-car">Указывать государственный номер транспортного средства строго в соответствии с фактически используемым ТС. В ряде случаев доступ оформляется автоматически именно по номеру автомобиля. Если указанные данные не совпадают с фактическими, система не сможет открыть шлагбаум.</span></li>
+                <li><span class="emoji">📅</span> <span data-i18n="cond-shift">Выбор транспортного средства осуществляется <strong>при начале смены</strong>.</span></li>
             </ul>
             <div class="note-card" style="margin-top: 0.8rem; margin-bottom: 0;">
-                <i class="fas fa-database"></i> <strong>Важно:</strong> Есть вероятность того, что шлагбаум или домофон не внесён в базу. В таком случае функция открытия через приложение будет недоступна — воспользуйтесь стандартным способом вызова (через гостевую панель или связь с охраной).
+                <span class="emoji">🗄️</span> <strong data-i18n="important-db">Важно:</strong> <span data-i18n="not-in-db">Есть вероятность того, что шлагбаум или домофон не внесён в базу. В таком случае функция открытия через приложение будет недоступна — воспользуйтесь стандартным способом вызова (через гостевую панель или связь с охраной).</span>
             </div>
         </div>
     </section>
 
     <!-- 2. Шлагбаумы -->
     <section id="barriers" class="section">
-        <h2><i class="fas fa-road-barrier"></i> Открытие шлагбаумов</h2>
-        <p>Для открытия шлагбаума необходимо перейти в <strong>карточку заказа</strong>. Внутри карточки будет доступна кнопка <strong>«Открыть»</strong>.</p>
-        <!-- ФОТО 1 -->
+        <h2><span class="emoji">🚧</span> <span data-i18n="barriers-title">Открытие шлагбаумов</span></h2>
+        <p data-i18n="barriers-desc1">Для открытия шлагбаума необходимо перейти в <strong>карточку заказа</strong>. Внутри карточки будет доступна кнопка <strong>«Открыть»</strong>.</p>
         <div class="media-row">
-            <div class="media-img">
-                <img src="images/photo1.jpg" alt="Фото 1: кнопка Открыть" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22127%22%20height%3D%22275%22%20viewBox%3D%220%200%20127%20275%22%3E%3Crect%20width%3D%22127%22%20height%3D%22275%22%20fill%3D%22%23e2e8f0%22%2F%3E%3Ctext%20x%3D%2263%22%20y%3D%22138%22%20font-size%3D%2212%22%20text-anchor%3D%22middle%22%20fill%3D%22%2364748b%22%3E%D0%A4%D0%BE%D1%82%D0%BE%201%3C%2Ftext%3E%3C%2Fsvg%3E';">
-            </div>
-            <div class="media-content">
-                <span class="photo-label">📸 ФОТО 1</span>
-                <p>Кнопка «Открыть» в карточке заказа — первый шаг для доступа к шлагбауму.</p>
-            </div>
+            <div class="media-img"><img src="images/photo1.jpg" alt="Фото 1" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22127%22%20height%3D%22275%22%20viewBox%3D%220%200%20127%20275%22%3E%3Crect%20width%3D%22127%22%20height%3D%22275%22%20fill%3D%22%23e2e8f0%22%2F%3E%3Ctext%20x%3D%2263%22%20y%3D%22138%22%20font-size%3D%2212%22%20text-anchor%3D%22middle%22%20fill%3D%22%2364748b%22%3E%D0%A4%D0%BE%D1%82%D0%BE%201%3C%2Ftext%3E%3C%2Fsvg%3E';"></div>
+            <div class="media-content"><span class="photo-label">📸 ФОТО 1</span><p data-i18n="photo1-desc">Кнопка «Открыть» в карточке заказа.</p></div>
         </div>
-        <p>После нажатия на кнопку откроется <strong>список шлагбаумов</strong>, доступных для открытия. Для удобства курьера каждый объект сопровождается фотографией — это помогает быстро определить нужный шлагбаум.</p>
-        <!-- ФОТО 2 -->
+        <p data-i18n="barriers-desc2">После нажатия откроется список шлагбаумов с фотографиями.</p>
         <div class="media-row">
-            <div class="media-img">
-                <img src="images/photo2.jpg" alt="Фото 2: список шлагбаумов" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22127%22%20height%3D%22275%22%20viewBox%3D%220%200%20127%20275%22%3E%3Crect%20width%3D%22127%22%20height%3D%22275%22%20fill%3D%22%23e2e8f0%22%2F%3E%3Ctext%20x%3D%2263%22%20y%3D%22138%22%20font-size%3D%2212%22%20text-anchor%3D%22middle%22%20fill%3D%22%2364748b%22%3E%D0%A4%D0%BE%D1%82%D0%BE%202%3C%2Ftext%3E%3C%2Fsvg%3E';">
-            </div>
-            <div class="media-content">
-                <span class="photo-label">📸 ФОТО 2</span>
-                <p>Список шлагбаумов с фотографиями для быстрого выбора нужного объекта.</p>
-            </div>
+            <div class="media-img"><img src="images/photo2.jpg" alt="Фото 2" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22127%22%20height%3D%22275%22%20viewBox%3D%220%200%20127%20275%22%3E%3Crect%20width%3D%22127%22%20height%3D%22275%22%20fill%3D%22%23e2e8f0%22%2F%3E%3Ctext%20x%3D%2263%22%20y%3D%22138%22%20font-size%3D%2212%22%20text-anchor%3D%22middle%22%20fill%3D%22%2364748b%22%3E%D0%A4%D0%BE%D1%82%D0%BE%202%3C%2Ftext%3E%3C%2Fsvg%3E';"></div>
+            <div class="media-content"><span class="photo-label">📸 ФОТО 2</span><p data-i18n="photo2-desc">Список шлагбаумов.</p></div>
         </div>
-        <p>Если нажать на <strong>иконку лупы</strong> <i class="fas fa-search"></i>, можно посмотреть подробную информацию о конкретном шлагбауме.</p>
-        <p>Для открытия необходимо нажать кнопку <strong>«Открыть»</strong> рядом с нужным объектом.</p>
-        <!-- ФОТО 3 -->
-        <div class="media-row">
-            <div class="media-img">
-                <img src="images/photo3.jpg" alt="Фото 3: кнопка открыть" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22127%22%20height%3D%22275%22%20viewBox%3D%220%200%20127%20275%22%3E%3Crect%20width%3D%22127%22%20height%3D%22275%22%20fill%3D%22%23e2e8f0%22%2F%3E%3Ctext%20x%3D%2263%22%20y%3D%22138%22%20font-size%3D%2212%22%20text-anchor%3D%22middle%22%20fill%3D%22%2364748b%22%3E%D0%A4%D0%BE%D1%82%D0%BE%203%3C%2Ftext%3E%3C%2Fsvg%3E';">
-            </div>
-            <div class="media-content">
-                <span class="photo-label">📸 ФОТО 3</span>
-                <p>Кнопка «Открыть» рядом с выбранным шлагбаумом.</p>
-            </div>
-        </div>
-        <p>После этого система отправит команду на открытие, а на экране появится информация о примерном времени ожидания. В большинстве случаев открытие занимает около <strong>20 секунд</strong>.</p>
-        <!-- ФОТО 4 -->
-        <div class="media-row">
-            <div class="media-img">
-                <img src="images/photo4.jpg" alt="Фото 4: время ожидания" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22127%22%20height%3D%22275%22%20viewBox%3D%220%200%20127%20275%22%3E%3Crect%20width%3D%22127%22%20height%3D%22275%22%20fill%3D%22%23e2e8f0%22%2F%3E%3Ctext%20x%3D%2263%22%20y%3D%22138%22%20font-size%3D%2212%22%20text-anchor%3D%22middle%22%20fill%3D%22%2364748b%22%3E%D0%A4%D0%BE%D1%82%D0%BE%204%3C%2Ftext%3E%3C%2Fsvg%3E';">
-            </div>
-            <div class="media-content">
-                <span class="photo-label">📸 ФОТО 4</span>
-                <p>Информация о времени ожидания (~20 секунд). Кнопки временно блокируются.</p>
-            </div>
-        </div>
-        <div class="danger-card">
-            <i class="fas fa-times-circle"></i> <strong>Если открыть шлагбаум не удалось</strong>, система отобразит причину ошибки.<br>
-            Возможные ситуации:
-            <ul style="margin-top: 8px; margin-left: 1.5rem;">
-                <li>курьер находится слишком далеко от шлагбаума;</li>
-                <li>произошла системная ошибка.</li>
-            </ul>
-        </div>
-        <!-- ФОТО 5 -->
-        <div class="media-row">
-            <div class="media-img">
-                <img src="images/photo5.jpg" alt="Фото 5: ошибка" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22127%22%20height%3D%22275%22%20viewBox%3D%220%200%20127%20275%22%3E%3Crect%20width%3D%22127%22%20height%3D%22275%22%20fill%3D%22%23e2e8f0%22%2F%3E%3Ctext%20x%3D%2263%22%20y%3D%22138%22%20font-size%3D%2212%22%20text-anchor%3D%22middle%22%20fill%3D%22%2364748b%22%3E%D0%A4%D0%BE%D1%82%D0%BE%205%3C%2Ftext%3E%3C%2Fsvg%3E';">
-            </div>
-            <div class="media-content">
-                <span class="photo-label">📸 ФОТО 5</span>
-                <p>Сообщение об ошибке: дальность или системный сбой.</p>
-            </div>
-        </div>
+        <p data-i18n="barriers-desc3">Нажмите «Открыть» рядом с нужным объектом. Ожидание ~20 секунд.</p>
+        <div class="danger-card"><span class="emoji">❌</span> <strong data-i18n="fail-title">Если открыть не удалось:</strong> <span data-i18n="fail-reasons">далеко от шлагбаума или системная ошибка.</span></div>
         <div class="warning-card">
-            <i class="fas fa-database"></i> <strong>При системной ошибке:</strong>
+            <span class="emoji">🗄️</span> <strong data-i18n="system-error-title">При системной ошибке:</strong>
             <ul class="arrow-list">
-                <li>зафиксировать текст ошибки (сделать скриншот)</li>
-                <li>сообщить менеджеру доставки (МД)</li>
-                <li>менеджер доставки (МД) пишет в SD</li>
-                <li>доставку выполнить через связь с гостем</li>
+                <li data-i18n="error-step1">зафиксировать текст ошибки (скриншот)</li>
+                <li data-i18n="error-step2">сообщить Менеджеру доставки</li>
+                <li data-i18n="error-step3">Менеджер доставки пишет в SD</li>
+                <li data-i18n="error-step4">доставку выполнить через связь с гостем</li>
             </ul>
         </div>
-        <p>Во время выполнения команды открытия кнопки будут временно заблокированы. После завершения ожидания (примерно через 20 секунд) они снова станут активными.</p>
-        
-        <!-- Блок про выезд -->
         <div id="exit" class="success-card">
-            <i class="fas fa-sign-out-alt"></i> <strong>Выезд с территории</strong><br>
-            Выезд также доступен по запросу из приложения. Функционал открытия для выезда работает аналогично: кнопка «Открыть» остаётся активной, а рядом отображается <strong>таймер времени её доступности</strong>. Запросить открытие на выезд можно так же, как и на въезд — через карточку заказа или через список шлагбаумов.
-        </div>
-        <!-- ФОТО 6 -->
-        <div class="media-row">
-            <div class="media-img">
-                <img src="images/photo6.jpg" alt="Фото 6: таймер выезда" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22127%22%20height%3D%22275%22%20viewBox%3D%220%200%20127%20275%22%3E%3Crect%20width%3D%22127%22%20height%3D%22275%22%20fill%3D%22%23e2e8f0%22%2F%3E%3Ctext%20x%3D%2263%22%20y%3D%22138%22%20font-size%3D%2212%22%20text-anchor%3D%22middle%22%20fill%3D%22%2364748b%22%3E%D0%A4%D0%BE%D1%82%D0%BE%206%3C%2Ftext%3E%3C%2Fsvg%3E';">
-            </div>
-            <div class="media-content">
-                <span class="photo-label">📸 ФОТО 6</span>
-                <p>Кнопка «Открыть» с таймером доступности (выезд с территории). Запрос на выезд отправляется через приложение.</p>
-            </div>
+            <span class="emoji">🚪🚗</span> <strong data-i18n="exit-title">Выезд с территории</strong><br>
+            <span data-i18n="exit-desc">Выезд также доступен по запросу из приложения. Кнопка «Открыть» с таймером доступности.</span>
         </div>
     </section>
 
     <!-- 3. Домофоны -->
     <section id="intercoms" class="section">
-        <h2><i class="fas fa-door-open"></i> Открытие домофонов</h2>
-        <p>В приложении поддерживаются два типа домофонов:</p>
-        <ul style="margin-left: 1.8rem; margin-bottom: 1rem;">
-            <li>домофоны с автоматическим открытием двери через приложение;</li>
-            <li>домофоны с ручным вводом кода, который генерируется системой.</li>
-        </ul>
-        
-        <div id="intercom-auto"></div>
-        <h3><i class="fas fa-bolt"></i> Домофоны с автоматическим открытием</h3>
-        <p>Для открытия двери необходимо нажать кнопку <strong>«Открыть»</strong> в карточке заказа — аналогично открытию шлагбаума.</p>
-        <!-- ФОТО 7 -->
+        <h2><span class="emoji">🚪🔊</span> <span data-i18n="intercoms-title">Открытие домофонов</span></h2>
+        <p data-i18n="intercoms-types">Два типа: автоматические и с кодом доступа.</p>
+        <h3><span class="emoji">⚡</span> <span data-i18n="auto-title">Автоматическое открытие</span></h3>
+        <p data-i18n="auto-desc">Нажмите «Открыть» → выберите подъезд → дверь откроется за 20 секунд.</p>
+        <h3><span class="emoji">⌨️</span> <span data-i18n="code-title">Домофоны с кодом</span></h3>
+        <p data-i18n="code-desc">Нажмите «Открыть» → получите уникальный код → введите на панели домофона.</p>
+        <div class="danger-card"><span class="emoji">📷🚫</span> <span data-i18n="screenshot-block">Скриншот кода невозможен — система блокирует.</span></div>
+        <div class="note-card"><span class="emoji">⏰</span> <span data-i18n="code-retry">Если код неверен или истёк, новый можно запросить через 20 секунд.</span></div>
+    </section>
+
+    <!-- Блок ошибок -->
+    <section id="errors" class="section">
+        <h2><span class="emoji">🐛</span> <span data-i18n="errors-summary-title">Сводка по нештатным ситуациям</span></h2>
+        <div class="warning-card">
+            <span class="emoji">⚠️</span> <strong data-i18n="system-error-short">Системная ошибка:</strong>
+            <ul class="arrow-list"><li data-i18n="error-steps-short">скриншот → сообщить Менеджеру доставки → Менеджер доставки пишет в SD → доставка через связь с гостем</li></ul>
+        </div>
+        <div class="note-card"><span class="emoji">📍</span> <strong data-i18n="gps-error-title">Ошибка "курьер слишком далеко"</strong> — <span data-i18n="gps-error-desc">проверьте GPS.</span></div>
+        <div class="note-card"><span class="emoji">🗄️</span> <strong data-i18n="notfound-title">Объект не найден в базе</strong> — <span data-i18n="notfound-desc">используйте гостевой вызов.</span></div>
+    </section>
+
+    <!-- Видео -->
+    <section id="video-block" class="section">
+        <h2><span class="emoji">🎥</span> <span data-i18n="video-title">Видеоинструкция</span></h2>
         <div class="media-row">
-            <div class="media-img">
-                <img src="images/photo7.jpg" alt="Фото 7: кнопка домофон" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22127%22%20height%3D%22275%22%20viewBox%3D%220%200%20127%20275%22%3E%3Crect%20width%3D%22127%22%20height%3D%22275%22%20fill%3D%22%23e2e8f0%22%2F%3E%3Ctext%20x%3D%2263%22%20y%3D%22138%22%20font-size%3D%2212%22%20text-anchor%3D%22middle%22%20fill%3D%22%2364748b%22%3E%D0%A4%D0%BE%D1%82%D0%BE%207%3C%2Ftext%3E%3C%2Fsvg%3E';">
-            </div>
-            <div class="media-content">
-                <span class="photo-label">📸 ФОТО 7</span>
-                <p>Кнопка «Открыть» для домофона в карточке заказа.</p>
-            </div>
-        </div>
-        <p>После этого на экране появится <strong>список подъездов</strong>. Курьеру необходимо выбрать нужный подъезд и нажать кнопку «Открыть». Процесс открытия обычно занимает около 20 секунд. На это время остальные кнопки открытия будут временно заблокированы.</p>
-        <!-- ФОТО 8 -->
-        <div class="media-row">
-            <div class="media-img">
-                <img src="images/photo8.jpg" alt="Фото 8: выбор подъезда" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22127%22%20height%3D%22275%22%20viewBox%3D%220%200%20127%20275%22%3E%3Crect%20width%3D%22127%22%20height%3D%22275%22%20fill%3D%22%23e2e8f0%22%2F%3E%3Ctext%20x%3D%2263%22%20y%3D%22138%22%20font-size%3D%2212%22%20text-anchor%3D%22middle%22%20fill%3D%22%2364748b%22%3E%D0%A4%D0%BE%D1%82%D0%BE%208%3C%2Ftext%3E%3C%2Fsvg%3E';">
-            </div>
-            <div class="media-content">
-                <span class="photo-label">📸 ФОТО 8</span>
-                <p>Список подъездов и временная блокировка кнопок на 20 секунд.</p>
-            </div>
-        </div>
-        <p>После успешной обработки запроса дверь откроется автоматически. Если открыть дверь не удалось, система отобразит сообщение с причиной ошибки.</p>
-        <!-- ФОТО 9 -->
-        <div class="media-row">
-            <div class="media-img">
-                <img src="images/photo9.jpg" alt="Фото 9: ошибка домофона" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22127%22%20height%3D%22275%22%20viewBox%3D%220%200%20127%20275%22%3E%3Crect%20width%3D%22127%22%20height%3D%22275%22%20fill%3D%22%23e2e8f0%22%2F%3E%3Ctext%20x%3D%2263%22%20y%3D%22138%22%20font-size%3D%2212%22%20text-anchor%3D%22middle%22%20fill%3D%22%2364748b%22%3E%D0%A4%D0%BE%D1%82%D0%BE%209%3C%2Ftext%3E%3C%2Fsvg%3E';">
-            </div>
-            <div class="media-content">
-                <span class="photo-label">📸 ФОТО 9</span>
-                <p>Ошибка открытия домофона: причина на экране.</p>
-            </div>
-        </div>
-        
-        <div id="intercom-code"></div>
-        <h3><i class="fas fa-keyboard"></i> Домофоны с кодом доступа</h3>
-        <p>Для получения кода также необходимо нажать кнопку <strong>«Открыть»</strong>. После запроса система сгенерирует уникальный код, который будет отображен на экране. Этот код необходимо вручную ввести на панели домофона.</p>
-        <!-- ФОТО 10 -->
-        <div class="media-row">
-            <div class="media-img">
-                <img src="images/photo10.jpg" alt="Фото 10: код" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22127%22%20height%3D%22275%22%20viewBox%3D%220%200%20127%20275%22%3E%3Crect%20width%3D%22127%22%20height%3D%22275%22%20fill%3D%22%23e2e8f0%22%2F%3E%3Ctext%20x%3D%2263%22%20y%3D%22138%22%20font-size%3D%2212%22%20text-anchor%3D%22middle%22%20fill%3D%22%2364748b%22%3E%D0%A4%D0%BE%D1%82%D0%BE%2010%3C%2Ftext%3E%3C%2Fsvg%3E';">
-            </div>
-            <div class="media-content">
-                <span class="photo-label">📸 ФОТО 10</span>
-                <p>Сгенерированный уникальный код доступа на экране.</p>
-            </div>
-        </div>
-        <div class="danger-card">
-            <i class="fas fa-camera-slash"></i> <strong>В целях безопасности</strong> сделать скриншот экрана с кодом невозможно — система автоматически выдаст ошибку.
-        </div>
-        <!-- ФОТО 11 -->
-        <div class="media-row">
-            <div class="media-img">
-                <img src="images/photo11.jpg" alt="Фото 11: ошибка скриншота" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22127%22%20height%3D%22275%22%20viewBox%3D%220%200%20127%20275%22%3E%3Crect%20width%3D%22127%22%20height%3D%22275%22%20fill%3D%22%23e2e8f0%22%2F%3E%3Ctext%20x%3D%2263%22%20y%3D%22138%22%20font-size%3D%2212%22%20text-anchor%3D%22middle%22%20fill%3D%22%2364748b%22%3E%D0%A4%D0%BE%D1%82%D0%BE%2011%3C%2Ftext%3E%3C%2Fsvg%3E';">
-            </div>
-            <div class="media-content">
-                <span class="photo-label">📸 ФОТО 11</span>
-                <p>Ошибка при попытке сделать скриншот кода — система блокирует.</p>
-            </div>
-        </div>
-        <div class="note-card">
-            <i class="fas fa-clock"></i> Если введённый код оказался неверным или истёк срок его действия, запросить новый код можно повторно <strong>через 20 секунд</strong>.
+            <div class="media-img"><video controls width="127" height="auto" style="max-height: 275px;"><source src="images/video.mp4" type="video/mp4">Ваш браузер не поддерживает видео.</video></div>
+            <div class="media-content"><span class="photo-label">🎬 <span data-i18n="video-label">Видеоурок</span></span><p data-i18n="video-desc">Наглядная демонстрация открытия шлагбаума и домофона через приложение.</p></div>
         </div>
     </section>
 
-    <!-- Блок ошибок (обобщение) -->
-    <section id="errors" class="section">
-        <h2><i class="fas fa-bug"></i> Сводка по нештатным ситуациям</h2>
-        <div class="warning-card">
-            <i class="fas fa-exclamation-circle"></i> <strong>Системная ошибка при открытии шлагбаума или домофона</strong><br>
-            <ul class="arrow-list">
-                <li>зафиксировать текст ошибки (скриншот)</li>
-                <li>сообщить менеджеру доставки (МД)</li>
-                <li>менеджер доставки (МД) пишет в SD</li>
-                <li>доставку выполнить через связь с гостем</li>
-            </ul>
-        </div>
-        <div class="note-card">
-            <i class="fas fa-map-marker-alt"></i> <strong>Ошибка "курьер слишком далеко"</strong> — убедитесь, что вы находитесь в зоне действия шлагбаума, проверьте GPS.
-        </div>
-        <div class="note-card">
-            <i class="fas fa-database"></i> <strong>Объект не найден в базе</strong> — если шлагбаум или домофон отсутствуют в списке, значит, они не внесены в систему. В таком случае воспользуйтесь вызовом через гостевую панель или свяжитесь с охраной/консьержем.
-        </div>
-        <p><i class="fas fa-undo-alt"></i> После ошибки или таймаута (≈20 сек) кнопки открытия снова становятся активными.</p>
+    <!-- ТЕСТ -->
+    <section id="quiz" class="quiz-section">
+        <h2><span class="emoji">❓</span> <span data-i18n="quiz-title">Проверьте себя</span></h2>
+        <p data-i18n="quiz-subtitle">Ответьте на 5 вопросов по инструкции.</p>
+        <div id="quiz-container"></div>
+        <div id="quiz-result" class="quiz-result" style="display: none;"></div>
     </section>
 
     <div class="footer">
-        <p><i class="fas fa-mobile-alt"></i> Приложение «Мчимыч» — инструкция актуальна.</p>
-        <p style="margin-top: 0.5rem;">© Курьерская платформа — быстрый доступ без барьеров</p>
+        <p><span class="emoji">📱</span> <span data-i18n="footer-text">Приложение «Мчимыч» — инструкция актуальна.</span></p>
+        <p>© Курьерская платформа — быстрый доступ без барьеров</p>
     </div>
 </div>
-<a href="#" class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i> Наверх</a>
+<a href="#" class="back-to-top" id="backToTop"><span class="emoji">⬆️</span> <span data-i18n="back-to-top">Наверх</span></a>
 
 <script>
-    document.querySelectorAll('.toc-link').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
-            const targetElement = document.getElementById(targetId);
-            if (targetElement) targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+// Переводы (RU, KY, TJ, UZ)
+const translations = {
+    ru: {
+        "header-sub": "Инструкция для курьеров «Мчимыч» — быстрый доступ к доставке",
+        "toc-title": "Содержание", "toc-overview": "📋 Общее описание", "toc-barriers": "🚧 Шлагбаумы",
+        "toc-intercom-auto": "📞 Домофоны (авто)", "toc-intercom-code": "🔢 Домофоны (код)",
+        "toc-errors": "⚠️ Ошибки", "toc-exit": "🚗 Выезд (по запросу)", "toc-video": "🎥 Видео", "toc-quiz": "📝 Тест",
+        "overview-title": "Общее описание", "overview-text": "В приложении «Мчимыч» доступен функционал автоматического открытия шлагбаумов и домофонов, который позволяет курьерам быстрее и удобнее получать доступ на территории доставки.",
+        "important-conditions": "Важные условия для корректной работы:",
+        "cond-personal": "Использовать исключительно личную учетную запись, в которой указан актуальный рабочий номер телефона курьера.",
+        "cond-personal-desc": "Использование аккаунтов без номера телефона или с номером, принадлежащим другому курьеру либо компании, не допускается.",
+        "cond-car": "Указывать государственный номер транспортного средства строго в соответствии с фактически используемым ТС. В ряде случаев доступ оформляется автоматически именно по номеру автомобиля. Если указанные данные не совпадают с фактическими, система не сможет открыть шлагбаум.",
+        "cond-shift": "Выбор транспортного средства осуществляется <strong>при начале смены</strong>.",
+        "important-db": "Важно:", "not-in-db": "Есть вероятность того, что шлагбаум или домофон не внесён в базу. В таком случае функция открытия через приложение будет недоступна — воспользуйтесь стандартным способом вызова (через гостевую панель или связь с охраной).",
+        "barriers-title": "Открытие шлагбаумов", "barriers-desc1": "Для открытия шлагбаума необходимо перейти в <strong>карточку заказа</strong>. Внутри карточки будет доступна кнопка <strong>«Открыть»</strong>.",
+        "photo1-desc": "Кнопка «Открыть» в карточке заказа.", "barriers-desc2": "После нажатия откроется список шлагбаумов с фотографиями.",
+        "photo2-desc": "Список шлагбаумов.", "barriers-desc3": "Нажмите «Открыть» рядом с нужным объектом. Ожидание ~20 секунд.",
+        "fail-title": "Если открыть не удалось:", "fail-reasons": "далеко от шлагбаума или системная ошибка.",
+        "system-error-title": "При системной ошибке:", "error-step1": "зафиксировать текст ошибки (скриншот)", "error-step2": "сообщить Менеджеру доставки", "error-step3": "Менеджер доставки пишет в SD", "error-step4": "доставку выполнить через связь с гостем",
+        "exit-title": "Выезд с территории", "exit-desc": "Выезд также доступен по запросу из приложения. Кнопка «Открыть» с таймером доступности.",
+        "intercoms-title": "Открытие домофонов", "intercoms-types": "Два типа: автоматические и с кодом доступа.",
+        "auto-title": "Автоматическое открытие", "auto-desc": "Нажмите «Открыть» → выберите подъезд → дверь откроется за 20 секунд.",
+        "code-title": "Домофоны с кодом", "code-desc": "Нажмите «Открыть» → получите уникальный код → введите на панели домофона.",
+        "screenshot-block": "Скриншот кода невозможен — система блокирует.", "code-retry": "Если код неверен или истёк, новый можно запросить через 20 секунд.",
+        "errors-summary-title": "Сводка по нештатным ситуациям", "system-error-short": "Системная ошибка:", "error-steps-short": "скриншот → сообщить Менеджеру доставки → Менеджер доставки пишет в SD → доставка через связь с гостем",
+        "gps-error-title": "Ошибка \"курьер слишком далеко\"", "gps-error-desc": "проверьте GPS.",
+        "notfound-title": "Объект не найден в базе", "notfound-desc": "используйте гостевой вызов.",
+        "video-title": "Видеоинструкция", "video-label": "Видеоурок", "video-desc": "Наглядная демонстрация открытия шлагбаума и домофона через приложение.",
+        "quiz-title": "Проверьте себя", "quiz-subtitle": "Ответьте на 5 вопросов по инструкции.", "back-to-top": "Наверх", "footer-text": "Приложение «Мчимыч» — инструкция актуальна."
+    },
+    ky: {
+        "header-sub": "«Мчимыч» курьерлерине нускама — жеткирүүгө тез кирүү",
+        "toc-title": "Мазмуну", "toc-overview": "📋 Жалпы сүрөттөмө", "toc-barriers": "🚧 Шлагбаумдар", "toc-intercom-auto": "📞 Домофондор (авто)", "toc-intercom-code": "🔢 Домофондор (код)", "toc-errors": "⚠️ Каталар", "toc-exit": "🚗 Чыгуу (суроо боюнча)", "toc-video": "🎥 Видео", "toc-quiz": "📝 Тест",
+        "overview-title": "Жалпы сүрөттөмө", "overview-text": "«Мчимыч» тиркемесинде шлагбаумдарды жана домофондорду автоматтык түрдө ачуу функциясы бар, бул курьерлерге жеткирүү аймагына тезирээк жана ыңгайлуу кирүүгө мүмкүндүк берет.",
+        "important-conditions": "Туура иштөө үчүн маанилүү шарттар:", "cond-personal": "Курьердин учурдагы жумушчу телефон номери көрсөтүлгөн жеке эсеп гана колдонулушу керек.",
+        "cond-personal-desc": "Телефон номери жок же башка курьерге же компанияга таандык номер менен эсептерди колдонууга жол берилбейт.",
+        "cond-car": "Унаанын мамлекеттик номерин иш жүзүндө колдонулуп жаткан унаага так көрсөтүңүз. Кээ бир учурларда кирүү автоматтык түрдө так унаа номери менен берилет.",
+        "cond-shift": "Унааны тандоо <strong>сменанын башында</strong> жүргүзүлөт.",
+        "important-db": "Маанилүү:", "not-in-db": "Шлагбаум же домофон маалымат базасына киргизилбеген болушу мүмкүн. Андай учурда тиркеме аркылуу ачуу иштебейт — стандарттык чакыруу ыкмасын колдонуңуз.",
+        "barriers-title": "Шлагбаумдарды ачуу", "barriers-desc1": "Шлагбаумды ачуу үчүн <strong>заказ карточкасына</strong> өтүңүз. Карточканын ичинде <strong>«Ачуу»</strong> баскычы болот.",
+        "photo1-desc": "Заказ карточкасындагы «Ачуу» баскычы.", "barriers-desc2": "Баскандан кийин сүрөттөрү менен шлагбаумдардын тизмеси ачылат.",
+        "photo2-desc": "Шлагбаумдардын тизмеси.", "barriers-desc3": "Керектүү объекттин жанындагы «Ачуу» баскычын басыңыз. Күтүү ~20 секунд.",
+        "fail-title": "Ачуу мүмкүн болбосо:", "fail-reasons": "шлагбаумдан алыс же тутумдук ката.",
+        "system-error-title": "Тутумдук ката кеткенде:", "error-step1": "ката текстин жазып алуу (скриншот)", "error-step2": "жеткирүү менеджерине билдирүү", "error-step3": "жеткирүү менеджери SD жазат", "error-step4": "жеткирүүнү конок аркылуу байланыш аркылуу аткаруу",
+        "exit-title": "Территориядан чыгуу", "exit-desc": "Чыгуу да тиркемеден суроо боюнча жеткиликтүү. «Ачуу» баскычы активдүү бойдон калат, жанында жеткиликтүүлүк таймери көрсөтүлөт.",
+        "intercoms-title": "Домофондорду ачуу", "intercoms-types": "Эки түрү: автоматтык жана кирүү коду бар.",
+        "auto-title": "Автоматтык ачуу", "auto-desc": "«Ачуу» баскычын басыңыз → кире беришти тандаңыз → эшик 20 секундда ачылат.",
+        "code-title": "Коду бар домофондор", "code-desc": "«Ачуу» баскычын басыңыз → уникалдуу кодду алыңыз → домофон панелинде киргизиңиз.",
+        "screenshot-block": "Коддун скриншотун алуу мүмкүн эмес — система бөгөт койот.", "code-retry": "Код туура эмес же мөөнөтү өтүп кетсе, 20 секунддан кийин кайра сурасаңыз болот.",
+        "errors-summary-title": "Күтүлбөгөн кырдаалдардын жыйынтыгы", "system-error-short": "Тутумдук ката:", "error-steps-short": "скриншот → жеткирүү менеджерине билдирүү → жеткирүү менеджери SD жазат → жеткирүүнү конок аркылуу байланыш аркылуу",
+        "gps-error-title": "«Курьер өтө алыс» катасы", "gps-error-desc": "GPSти текшериңиз.",
+        "notfound-title": "Объект базадан табылган жок", "notfound-desc": "конок чакырууну колдонуңуз.",
+        "video-title": "Видео нускама", "video-label": "Видеосабак", "video-desc": "Тиркеме аркылуу шлагбаум жана домофонду ачуунун көрсөтмөсү.",
+        "quiz-title": "Өзүңүздү текшериңиз", "quiz-subtitle": "Нускама боюнча 5 суроого жооп бериңиз.", "back-to-top": "Жогору", "footer-text": "«Мчимыч» тиркемеси — нускама актуалдуу."
+    },
+    tj: {
+        "header-sub": "Дастури курьерони «Мчимыч» — дастрасии зуд ба расонидан",
+        "toc-title": "Мундариҷа", "toc-overview": "📋 Тавсифи умумӣ", "toc-barriers": "🚧 Шлагбаумҳо", "toc-intercom-auto": "📞 Домофонҳо (авто)", "toc-intercom-code": "🔢 Домофонҳо (рамз)", "toc-errors": "⚠️ Хатоҳо", "toc-exit": "🚗 Баромадан (бо дархост)", "toc-video": "🎥 Видео", "toc-quiz": "📝 Санҷиш",
+        "overview-title": "Тавсифи умумӣ", "overview-text": "Дар замимаи «Мчимыч» функсияи кушодани автоматии шлагбаумҳо ва домофонҳо мавҷуд аст, ки ба курьерон имкон медиҳад зудтар ва ба осонӣ ба минтақаи расонидан дастрасӣ пайдо кунанд.",
+        "important-conditions": "Шартҳои муҳим барои кори дуруст:", "cond-personal": "Танҳо ҳисоби шахсиро истифода баред, ки дар он рақами телефони корикунандаи курьер нишон дода шудааст.",
+        "cond-personal-desc": "Истифодаи ҳисобҳо бе рақами телефон ё бо рақаме, ки ба курьери дигар ё ширкат тааллуқ дорад, иҷозат дода намешавад.",
+        "cond-car": "Рақами давлатии воситаи нақлиётро мувофиқи воситаи нақлиёти воқеан истифодашаванда нишон диҳед. Дар як қатор ҳолатҳо дастрасӣ автоматӣ бо рақами мошин дода мешавад.",
+        "cond-shift": "Интихоби воситаи нақлиёт <strong>дар оғози смена</strong> анҷом дода мешавад.",
+        "important-db": "Муҳим:", "not-in-db": "Эҳтимол аст, ки шлагбаум ё домофон ба пойгоҳи додаҳо ворид карда нашудааст. Дар ин ҳолат функсияи кушодан тавассути замима дастрас нахоҳад буд — аз усули стандартии даъват (тавассути панели меҳмон ё алоқа бо посбон) истифода баред.",
+        "barriers-title": "Кушодани шлагбаумҳо", "barriers-desc1": "Барои кушодани шлагбаум ба <strong>карточкаи фармоиш</strong> гузаред. Дар дохили карточка тугмаи <strong>«Кушодан»</strong> дастрас хоҳад буд.",
+        "photo1-desc": "Тугмаи «Кушодан» дар карточкаи фармоиш.", "barriers-desc2": "Пас аз пахш кардан рӯйхати шлагбаумҳо бо аксҳо кушода мешавад.",
+        "photo2-desc": "Рӯйхати шлагбаумҳо.", "barriers-desc3": "Тугмаи «Кушодан»-ро дар паҳлуи объекти дилхоҳ пахш кунед. Интизорӣ ~20 сония.",
+        "fail-title": "Агар кушодан муяссар нашуд:", "fail-reasons": "аз шлагбаум дур аст ё хатои системанок.",
+        "system-error-title": "Ҳангоми хатои системанок:", "error-step1": "матни хатогиро сабт кунед (скриншот)", "error-step2": "ба Менеҷери расонидан хабар диҳед", "error-step3": "Менеҷери расонидан ба SD менависад", "error-step4": "расониданро тавассути алоқа бо меҳмон иҷро кунед",
+        "exit-title": "Баромадан аз ҳудуд", "exit-desc": "Баромадан низ тавассути дархост аз замима дастрас аст. Тугмаи «Кушодан» фаъол мемонад ва дар паҳлуи он таймери дастрасӣ нишон дода мешавад.",
+        "intercoms-title": "Кушодани домофонҳо", "intercoms-types": "Ду намуд: автоматӣ ва бо рамзи дастрасӣ.",
+        "auto-title": "Кушодани автоматӣ", "auto-desc": "Тугмаи «Кушодан»-ро пахш кунед → даромадгоҳро интихоб кунед → дар 20 сония кушода мешавад.",
+        "code-title": "Домофонҳо бо рамз", "code-desc": "Тугмаи «Кушодан»-ро пахш кунед → рамзи беназир гиред → дар панели домофон ворид кунед.",
+        "screenshot-block": "Скриншоти рамз ғайриимкон аст — система баста мешавад.", "code-retry": "Агар рамз нодуруст ё мӯҳлаташ гузашта бошад, рамзи навро пас аз 20 сония дархост кардан мумкин аст.",
+        "errors-summary-title": "Ҷамъбасти ҳолатҳои ғайринавбатӣ", "system-error-short": "Хатои системанок:", "error-steps-short": "скриншот → ба Менеҷери расонидан хабар диҳед → Менеҷери расонидан ба SD менависад → расонидан тавассути алоқа бо меҳмон",
+        "gps-error-title": "Хатогии \"курьер хеле дур\"", "gps-error-desc": "GPS-ро санҷед.",
+        "notfound-title": "Объект дар пойгоҳ пайдо нашуд", "notfound-desc": "даъвати меҳмонро истифода баред.",
+        "video-title": "Дастури видеоӣ", "video-label": "Дарси видеоӣ", "video-desc": "Намоиши амалии кушодани шлагбаум ва домофон тавассути замима.",
+        "quiz-title": "Худро санҷед", "quiz-subtitle": "Ба 5 савол аз рӯи дастур ҷавоб диҳед.", "back-to-top": "Ба боло", "footer-text": "Замимаи «Мчимыч» — дастур эътибор дорад."
+    },
+    uz: {
+        "header-sub": "«Mchimych» kuryerlari uchun yo‘riqnoma — yetkazib berishga tez kirish",
+        "toc-title": "Mundarija", "toc-overview": "📋 Umumiy tavsif", "toc-barriers": "🚧 Shlagbaumlar", "toc-intercom-auto": "📞 Domofonlar (avto)", "toc-intercom-code": "🔢 Domofonlar (kod)", "toc-errors": "⚠️ Xatolar", "toc-exit": "🚗 Chiqish (so‘rov bo‘yicha)", "toc-video": "🎥 Video", "toc-quiz": "📝 Test",
+        "overview-title": "Umumiy tavsif", "overview-text": "«Mchimych» ilovasida shlagbaumlar va domofonlarni avtomatik ochish funksiyasi mavjud bo‘lib, bu kuryerlarga yetkazib berish hududiga tezroq va qulayroq kirish imkonini beradi.",
+        "important-conditions": "To‘g‘ri ishlash uchun muhim shartlar:", "cond-personal": "Faqat kuryerning amaldagi ish telefon raqami ko‘rsatilgan shaxsiy hisobdan foydalaning.",
+        "cond-personal-desc": "Telefon raqamisiz yoki boshqa kuryer yoki kompaniyaga tegishli raqam bilan hisoblardan foydalanishga yo‘l qo‘yilmaydi.",
+        "cond-car": "Transport vositasining davlat raqamini amalda foydalanilayotgan transport vositasiga qat’iy muvofiq ravishda ko‘rsating. Ba’zi hollarda kirish avtomatik ravishda aynan avtomobil raqami bilan rasmiylashtiriladi.",
+        "cond-shift": "Transport vositasini tanlash <strong>smena boshida</strong> amalga oshiriladi.",
+        "important-db": "Muhim:", "not-in-db": "Shlagbaum yoki domofon ma’lumotlar bazasiga kiritilmagan bo‘lishi ehtimoli bor. Bunday holda, ilova orqali ochish funksiyasi ishlamaydi — standart chaqiruv usulidan foydalaning (mehmon paneli orqali yoki qo‘riqchi bilan aloqa).",
+        "barriers-title": "Shlagbaumlarni ochish", "barriers-desc1": "Shlagbaumni ochish uchun <strong>buyurtma kartochkasiga</strong> o‘ting. Kartochka ichida <strong>«Ochish»</strong> tugmasi mavjud bo‘ladi.",
+        "photo1-desc": "Buyurtma kartochkasidagi «Ochish» tugmasi.", "barriers-desc2": "Bosgandan so‘ng rasmlar bilan shlagbaumlar ro‘yxati ochiladi.",
+        "photo2-desc": "Shlagbaumlar ro‘yxati.", "barriers-desc3": "Kerakli obyekt yonidagi «Ochish» tugmasini bosing. Kutish ~20 soniya.",
+        "fail-title": "Agar ochish imkoni bo‘lmasa:", "fail-reasons": "shlagbaumdan uzoq yoki tizimli xato.",
+        "system-error-title": "Tizimli xato bo‘lganda:", "error-step1": "xato matnini qayd qilish (skrinshot)", "error-step2": "Yetkazib berish menejeriga xabar berish", "error-step3": "Yetkazib berish menejeri SD ga yozadi", "error-step4": "yetkazib berishni mehmon bilan aloqa orqali amalga oshirish",
+        "exit-title": "Hududdan chiqish", "exit-desc": "Chiqish ham ilovadan so‘rov bo‘yicha mavjud. «Ochish» tugmasi faol qoladi va yonida mavjudlik taymeri ko‘rsatiladi.",
+        "intercoms-title": "Domofonlarni ochish", "intercoms-types": "Ikki turi: avtomatik va kirish kodi bilan.",
+        "auto-title": "Avtomatik ochish", "auto-desc": "«Ochish» tugmasini bosing → pod’yezdni tanlang → eshik 20 soniyada ochiladi.",
+        "code-title": "Kodli domofonlar", "code-desc": "«Ochish» tugmasini bosing → noyob kodni oling → domofon panelida kiriting.",
+        "screenshot-block": "Kodni skrinshot qilish imkonsiz — tizim bloklaydi.", "code-retry": "Agar kod noto‘g‘ri yoki muddati o‘tgan bo‘lsa, 20 soniyadan keyin yangi kodni qayta so‘rash mumkin.",
+        "errors-summary-title": "Kutilmagan holatlar haqida ma’lumot", "system-error-short": "Tizimli xato:", "error-steps-short": "skrinshot → Yetkazib berish menejeriga xabar berish → Yetkazib berish menejeri SD ga yozadi → yetkazib berishni mehmon bilan aloqa orqali",
+        "gps-error-title": "\"Kuryer juda uzoq\" xatosi", "gps-error-desc": "GPSni tekshiring.",
+        "notfound-title": "Obyekt bazadan topilmadi", "notfound-desc": "mehmon chaqiruvidan foydalaning.",
+        "video-title": "Videoyo‘riqnoma", "video-label": "Videodars", "video-desc": "Ilova orqali shlagbaum va domofonni ochishning vizual namoyishi.",
+        "quiz-title": "O‘zingizni sinab ko‘ring", "quiz-subtitle": "Yo‘riqnoma bo‘yicha 5 savolga javob bering.", "back-to-top": "Yuqoriga", "footer-text": "«Mchimych» ilovasi — yo‘riqnoma amaldadir."
+    }
+};
+
+const quizQuestions = {
+    ru: [
+        { question: "Что необходимо использовать для корректной работы функционала открытия?", options: ["Аккаунт компании с общим номером", "Исключительно личную учетную запись с актуальным рабочим номером курьера", "Любой аккаунт, зарегистрированный на другое лицо", "Учетную запись без номера телефона"], correct: 1, explanation: "В разделе «Общее описание»: использовать исключительно личную учетную запись." },
+        { question: "Сколько секунд в среднем занимает открытие шлагбаума или домофона?", options: ["5 секунд", "10 секунд", "20 секунд", "30 секунд"], correct: 2, explanation: "Инструкция: «около 20 секунд»." },
+        { question: "Что делать при системной ошибке открытия?", options: ["Перезагрузить приложение", "Зафиксировать скриншот, сообщить Менеджеру доставки, Менеджер доставки пишет в SD, доставка через связь с гостем", "Игнорировать", "Написать в чат поддержки"], correct: 1, explanation: "Чёткий алгоритм: скриншот → Менеджер доставки → SD → связь с гостем." },
+        { question: "Какой тип домофонов требует ручного ввода сгенерированного кода?", options: ["Автоматические", "С кодом доступа", "Все", "Только в подъездах"], correct: 1, explanation: "Домофоны с кодом доступа: система генерирует код." },
+        { question: "Доступен ли выезд с территории через приложение?", options: ["Нет, только въезд", "Да, выезд также доступен по запросу из приложения", "Только ночью", "Только для шлагбаумов"], correct: 1, explanation: "В разделе «Выезд»: выезд доступен по запросу из приложения." }
+    ],
+    ky: [
+        { question: "Ачуу функциясынын туура иштеши үчүн эмнени колдонуу керек?", options: ["Жалпы номер менен компаниянын аккаунтун", "Курьердин учурдагы жумушчу телефон номери көрсөтүлгөн жеке эсепти", "Башка адамга катталган каалаган аккаунтту", "Телефон номери жок эсепти"], correct: 1, explanation: "«Жалпы сүрөттөмө» бөлүмүндө: жеке эсепти колдонуңуз." },
+        { question: "Шлагбаум же домофонду ачуу орточо канча секундга созулат?", options: ["5 секунд", "10 секунд", "20 секунд", "30 секунд"], correct: 2, explanation: "Нускама: «болжол менен 20 секунд»." },
+        { question: "Тутумдук ката кеткенде эмне кылуу керек?", options: ["Тиркемени кайра жүктөө", "Скриншотту жазып алуу, Жеткирүү менеджерине билдирүү, Жеткирүү менеджери SD жазат, жеткирүүнү конок аркылуу байланыш аркылуу аткаруу", "Эле көңүл бурбоо", "Колдоо чатына жазуу"], correct: 1, explanation: "Так алгоритм: скриншот → Жеткирүү менеджери → SD → конок аркылуу байланыш." },
+        { question: "Домофондун кайсы түрү кол менен киргизилүүчү кодду талап кылат?", options: ["Автоматтык", "Кирүү коду менен", "Бардыгы", "Текшерүү пункттарында гана"], correct: 1, explanation: "Кирүү коду бар домофондор: система кодду түзөт." },
+        { question: "Тиркеме аркылуу территориядан чыгуу мүмкүнбү?", options: ["Жок, кирүү гана", "Ооба, чыгуу да тиркемеден суроо боюнча жеткиликтүү", "Түнкүсүн гана", "Шлагбаумдар үчүн гана"], correct: 1, explanation: "«Чыгуу» бөлүмүндө: чыгуу тиркемеден суроо боюнча жеткиликтүү." }
+    ],
+    tj: [
+        { question: "Барои кори дурусти функсияи кушодан чӣ истифода бурдан лозим?", options: ["Ҳисоби ширкат бо рақами умумӣ", "Танҳо ҳисоби шахсӣ бо рақами телефони корикунандаи курьер", "Ҳар гуна ҳисоби ба шахси дигар сабтшуда", "Ҳисоби бе рақами телефон"], correct: 1, explanation: "Дар «Тавсифи умумӣ»: ҳисоби шахсиро истифода баред." },
+        { question: "Кушодани шлагбаум ё домофон ба ҳисоби миёна чанд сония вақт мегирад?", options: ["5 сония", "10 сония", "20 сония", "30 сония"], correct: 2, explanation: "Дастур: «тақрибан 20 сония»." },
+        { question: "Ҳангоми хатои системанок чӣ бояд кард?", options: ["Замимаро аз нав бор кунед", "Скриншот сабт кунед, ба Менеҷери расонидан хабар диҳед, Менеҷери расонидан ба SD менависад, расониданро тавассути алоқа бо меҳмон иҷро кунед", "Беэътиноӣ кунед", "Ба чати дастгирӣ нависед"], correct: 1, explanation: "Алгоритми дақиқ: скриншот → Менеҷери расонидан → SD → алоқа бо меҳмон." },
+        { question: "Кадом намуди домофон воридкунии дастии рамзи тавлидшударо талаб мекунад?", options: ["Автоматӣ", "Бо рамзи дастрасӣ", "Ҳама", "Танҳо дар даромадгоҳҳо"], correct: 1, explanation: "Домофонҳо бо рамзи дастрасӣ: система рамз тавлид мекунад." },
+        { question: "Оё баромадан аз ҳудуд тавассути замима дастрас аст?", options: ["Не, танҳо вуруд", "Ҳа, баромадан низ тавассути дархост аз замима дастрас аст", "Танҳо шабона", "Танҳо барои шлагбаумҳо"], correct: 1, explanation: "Дар «Баромадан»: баромадан тавассути дархост аз замима дастрас аст." }
+    ],
+    uz: [
+        { question: "Ochish funksiyasining to‘g‘ri ishlashi uchun nimadan foydalanish kerak?", options: ["Umumiy raqam bilan kompaniya hisobi", "Kuryerning amaldagi ish telefon raqami ko‘rsatilgan shaxsiy hisob", "Boshqa shaxsga ro‘yxatdan o‘tgan har qanday hisob", "Telefon raqamisiz hisob"], correct: 1, explanation: "«Umumiy tavsif» bo‘limida: shaxsiy hisobdan foydalaning." },
+        { question: "Shlagbaum yoki domofonni ochish o‘rtacha necha soniya davom etadi?", options: ["5 soniya", "10 soniya", "20 soniya", "30 soniya"], correct: 2, explanation: "Yo‘riqnoma: «taxminan 20 soniya»." },
+        { question: "Tizimli xato bo‘lganda nima qilish kerak?", options: ["Ilovani qayta yuklash", "Skrinshotni qayd qilish, Yetkazib berish menejeriga xabar berish, Yetkazib berish menejeri SD ga yozadi, yetkazib berishni mehmon bilan aloqa orqali amalga oshirish", "E'tiborsiz qoldirish", "Qo‘llab-quvvatlash chatiga yozish"], correct: 1, explanation: "Aniq algoritm: skrinshot → Yetkazib berish menejeri → SD → mehmon bilan aloqa." },
+        { question: "Domofonning qaysi turi yaratilgan kodni qo‘lda kiritishni talab qiladi?", options: ["Avtomatik", "Kirish kodi bilan", "Hammasi", "Faqat pod’ezdlarda"], correct: 1, explanation: "Kirish kodi bilan domofonlar: tizim kod yaratadi." },
+        { question: "Ilova orqali hududdan chiqish mumkinmi?", options: ["Yo‘q, faqat kirish", "Ha, chiqish ham ilovadan so‘rov bo‘yicha mavjud", "Faqat kechasi", "Faqat shlagbaumlar uchun"], correct: 1, explanation: "«Chiqish» bo‘limida: chiqish ilovadan so‘rov bo‘yicha mavjud." }
+    ]
+};
+
+let currentLang = "ru";
+
+function applyTranslations(lang) {
+    for (const [key, text] of Object.entries(translations[lang])) {
+        const elements = document.querySelectorAll(`[data-i18n="${key}"]`);
+        elements.forEach(el => {
+            if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                el.placeholder = text;
+            } else {
+                if (key === "cond-shift" || key === "barriers-desc1" || key === "barriers-desc3" || key === "exit-desc") {
+                    el.innerHTML = text;
+                } else {
+                    el.textContent = text;
+                }
+            }
         });
+    }
+    renderQuiz(lang);
+}
+
+function renderQuiz(lang) {
+    const container = document.getElementById('quiz-container');
+    if (!container) return;
+    const questions = quizQuestions[lang] || quizQuestions.ru;
+    container.innerHTML = '';
+    questions.forEach((item, idx) => {
+        const questionDiv = document.createElement('div');
+        questionDiv.className = 'quiz-question';
+        const questionText = document.createElement('p');
+        questionText.innerHTML = `<strong>${idx+1}. ${item.question}</strong>`;
+        questionDiv.appendChild(questionText);
+        const optionsDiv = document.createElement('div');
+        item.options.forEach((opt, optIdx) => {
+            const label = document.createElement('label');
+            label.className = 'quiz-option';
+            const radio = document.createElement('input');
+            radio.type = 'radio';
+            radio.name = `q${idx}`;
+            radio.value = optIdx;
+            radio.addEventListener('change', () => checkAnswer(idx, optIdx, questionDiv, lang));
+            label.appendChild(radio);
+            label.appendChild(document.createTextNode(` ${opt}`));
+            optionsDiv.appendChild(label);
+        });
+        questionDiv.appendChild(optionsDiv);
+        const feedbackDiv = document.createElement('div');
+        feedbackDiv.className = 'quiz-feedback';
+        feedbackDiv.id = `feedback-${idx}-${Date.now()}`;
+        questionDiv.appendChild(feedbackDiv);
+        container.appendChild(questionDiv);
     });
-    document.getElementById('backToTop').addEventListener('click', (e) => {
+    const resultDiv = document.getElementById('quiz-result');
+    if (resultDiv) resultDiv.style.display = 'none';
+}
+
+function checkAnswer(qid, selectedIdx, questionDiv, lang) {
+    const questions = quizQuestions[lang] || quizQuestions.ru;
+    const correctIdx = questions[qid].correct;
+    const feedbackId = questionDiv.querySelector('.quiz-feedback')?.id;
+    const feedbackDiv = document.getElementById(feedbackId);
+    if (!feedbackDiv) return;
+    if (selectedIdx === correctIdx) {
+        feedbackDiv.innerHTML = `<span class="quiz-correct">✓ Верно! ${questions[qid].explanation}</span>`;
+    } else {
+        const correctText = questions[qid].options[correctIdx];
+        feedbackDiv.innerHTML = `<span class="quiz-wrong">✗ Неверно. Правильный ответ: "${correctText}". ${questions[qid].explanation}</span>`;
+    }
+    updateTotalScore(lang);
+}
+
+function updateTotalScore(lang) {
+    const questions = quizQuestions[lang] || quizQuestions.ru;
+    let totalCorrect = 0;
+    for (let i = 0; i < questions.length; i++) {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        if (selected && parseInt(selected.value) === questions[i].correct) totalCorrect++;
+    }
+    const resultDiv = document.getElementById('quiz-result');
+    if (resultDiv) {
+        resultDiv.style.display = 'block';
+        resultDiv.innerHTML = `🏆 Результат: ${totalCorrect} из ${questions.length} правильных ответов.`;
+        resultDiv.style.background = totalCorrect === questions.length ? "#22c55e" : "var(--accent)";
+    }
+}
+
+function setLanguage(lang) {
+    currentLang = lang;
+    applyTranslations(lang);
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        if (btn.getAttribute('data-lang') === lang) btn.classList.add('active');
+        else btn.classList.remove('active');
+    });
+    updateTotalScore(lang);
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        const lang = btn.getAttribute('data-lang');
+        if (lang) setLanguage(lang);
+    });
+});
+
+setLanguage('ru');
+
+document.querySelectorAll('.toc-link').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
         e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        const targetId = this.getAttribute('href').substring(1);
+        const target = document.getElementById(targetId);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
+});
+document.getElementById('backToTop').addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 </script>
 </body>
 </html>
